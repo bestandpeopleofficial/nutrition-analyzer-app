@@ -16,8 +16,8 @@
             --dark-gray: #333;
             --text-color: #444;
             --card-bg: #fff;
-            --border-radius: 8px;
-            --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --border-radius: 10px; /* Увеличено для более мягкого вида */
+            --shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Усилена тень для объема */
             --transition-speed: 0.3s ease;
         }
 
@@ -41,168 +41,171 @@
         header {
             background-color: var(--primary-green);
             color: #fff;
-            padding: 15px 20px;
+            padding: 18px 25px; /* Увеличен паддинг */
             display: flex;
             justify-content: space-between;
             align-items: center;
             box-shadow: var(--shadow);
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 15px;
+            border-bottom-left-radius: var(--border-radius); /* Закругления только снизу */
+            border-bottom-right-radius: var(--border-radius);
+            z-index: 100; /* Убедимся, что хедер поверх */
+            position: relative; /* Для z-index */
         }
 
         header .logo {
-            font-size: 1.8em;
+            font-size: 2em; /* Увеличен размер лого */
             font-weight: 700;
             color: #fff;
             display: flex;
             align-items: center;
+            letter-spacing: -0.5px; /* Немного уменьшен интервал между буквами */
         }
 
         header .logo::before {
-            content: '🍎';
-            margin-right: 10px;
-            font-size: 1.2em;
+            content: '�';
+            margin-right: 12px;
+            font-size: 1.3em;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3)); /* Добавлена тень к яблоку */
         }
 
         header .user-profile {
             color: #fff;
-            font-size: 1.1em;
+            font-size: 1.15em;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            font-weight: 500;
         }
 
         header .user-profile button {
-            background: none;
-            border: none;
+            background: rgba(255, 255, 255, 0.15); /* Полупрозрачный фон */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Легкая белая рамка */
             color: #fff;
             font-weight: 600;
             cursor: pointer;
-            text-decoration: underline;
-            padding: 5px 10px;
-            border-radius: var(--border-radius);
-            transition: background-color var(--transition-speed);
+            text-decoration: none; /* Убран underline */
+            padding: 8px 15px;
+            border-radius: 20px; /* Более округлые кнопки */
+            transition: background-color var(--transition-speed), border-color var(--transition-speed), transform 0.1s ease;
         }
 
         header .user-profile button:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.3);
+            border-color: #fff;
+            transform: translateY(-1px);
+        }
+        header .user-profile button:active {
+            transform: translateY(0);
         }
 
         /* Основное содержимое */
         .container {
             display: flex;
             flex: 1;
-            padding: 20px;
-            gap: 20px;
-            flex-wrap: wrap; /* Позволяет колонкам переходить на новую строку на маленьких экранах */
+            padding: 25px; /* Увеличен паддинг контейнера */
+            gap: 25px; /* Увеличен отступ между колонками */
+            flex-wrap: wrap;
         }
 
-        /* Левая панель */
-        .left-panel, .right-panel {
+        /* Левая панель, правая панель, модальные окна */
+        .left-panel, .right-panel, .modal-content {
             background-color: var(--card-bg);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
-            padding: 20px;
+            padding: 25px; /* Увеличен паддинг */
+            transition: box-shadow var(--transition-speed);
         }
+        .left-panel:hover, .right-panel:hover {
+             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Тень при наведении */
+        }
+
 
         .left-panel {
-            flex: 0 0 280px; /* Фиксированная ширина на больших экранах */
+            flex: 0 0 300px; /* Увеличена ширина левой панели */
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px; /* Увеличен отступ между секциями */
         }
 
-        .left-panel h3, .right-panel h3 {
+        .left-panel h3, .right-panel h3, .modal-content h2 {
             color: var(--dark-green);
-            margin-bottom: 15px;
-            font-size: 1.3em;
-            border-bottom: 1px solid var(--medium-gray);
-            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.6em; /* Увеличен размер заголовков */
+            border-bottom: 2px solid var(--medium-gray); /* Утолщена линия */
+            padding-bottom: 12px;
+            text-align: center;
+            font-weight: 600;
         }
 
-        .calendar button {
+        .calendar button, .profile-management button, .custom-items-section button, #get-llm-advice-btn, #set-targets-btn, #add-weight-btn, #import-user-data-btn {
             width: 100%;
-            padding: 10px 15px;
+            padding: 12px 18px; /* Увеличен паддинг кнопок */
             background-color: var(--primary-green);
             color: #fff;
             border: none;
-            border-radius: var(--border-radius);
+            border-radius: 25px; /* Более округлые кнопки */
             cursor: pointer;
-            font-size: 1em;
-            font-weight: 500;
-            transition: background-color var(--transition-speed), transform 0.1s ease;
-            margin-bottom: 10px;
+            font-size: 1.05em; /* Немного увеличен шрифт */
+            font-weight: 600;
+            transition: background-color var(--transition-speed), transform 0.1s ease, box-shadow 0.2s ease;
+            margin-bottom: 12px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2); /* Тень для кнопок */
         }
-        .calendar button:hover {
+        .calendar button:hover, .profile-management button:hover, .custom-items-section button:hover, #get-llm-advice-btn:hover, #set-targets-btn:hover, #add-weight-btn:hover, #import-user-data-btn:hover {
             background-color: var(--dark-green);
             transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
         }
-        .calendar button:active {
+        .calendar button:active, .profile-management button:active, .custom-items-section button:active, #get-llm-advice-btn:active, #set-targets-btn:active, #add-weight-btn:active, #import-user-data-btn:active {
             transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
-
-        .calendar .day-navigation {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
         .calendar .day-navigation button {
-            flex: 1;
-            margin: 0 5px;
             background-color: var(--accent-orange);
         }
-
         .calendar .day-navigation button:hover {
-            background-color: darken(var(--accent-orange), 10%);
+            background-color: #e68900;
         }
-
         .calendar .current-date {
-            font-weight: 600;
-            font-size: 1.1em;
+            font-weight: 700; /* Жирный шрифт для даты */
+            font-size: 1.3em;
             text-align: center;
             flex: 2;
             white-space: nowrap;
-        }
-
-        .profile-management {
-            padding-top: 20px;
-            border-top: 1px solid var(--medium-gray);
-        }
-
-        .profile-management button {
-            width: 100%;
-            margin-bottom: 10px;
-            background-color: var(--primary-green);
+            color: var(--dark-gray);
         }
 
         .profile-management button.secondary {
             background-color: var(--medium-gray);
             color: var(--text-color);
+            box-shadow: none;
         }
-
         .profile-management button.secondary:hover {
-            background-color: darken(var(--medium-gray), 10%);
+            background-color: #c0c0c0; /* Замена darken(var(--medium-gray), 10%) */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .profile-list ul {
             list-style: none;
-            max-height: 200px;
+            max-height: 200px; /* Увеличена высота списка */
             overflow-y: auto;
             border: 1px solid var(--medium-gray);
             border-radius: var(--border-radius);
-            margin-top: 10px;
+            margin-top: 15px;
+            padding: 5px;
         }
 
         .profile-list li {
-            padding: 8px 10px;
+            padding: 10px 15px;
             cursor: pointer;
-            border-bottom: 1px solid var(--medium-gray);
-            transition: background-color var(--transition-speed);
+            border-bottom: 1px solid var(--light-gray); /* Более тонкая линия */
+            transition: background-color var(--transition-speed), transform 0.1s ease;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-weight: 500;
         }
 
         .profile-list li:last-child {
@@ -211,226 +214,269 @@
 
         .profile-list li:hover {
             background-color: var(--light-gray);
+            transform: translateX(5px); /* Небольшой сдвиг при наведении */
         }
         .profile-list li.active {
             background-color: var(--primary-green);
             color: #fff;
             font-weight: 600;
+            box-shadow: inset 3px 0 0 var(--accent-orange); /* Оранжевая полоска активного профиля */
         }
         .profile-list li.active span {
             color: #fff;
         }
         .profile-list li.active:hover {
              background-color: var(--dark-green);
+             transform: translateX(0);
         }
         .profile-list li .delete-profile {
             background-color: transparent;
             border: none;
-            color: #ff4d4d;
-            font-size: 1.2em;
+            color: #ff6b6b; /* Более мягкий красный */
+            font-size: 1.4em;
             cursor: pointer;
-            transition: color var(--transition-speed);
-            padding: 0 5px;
+            transition: color var(--transition-speed), transform 0.1s ease;
+            padding: 0 8px;
         }
         .profile-list li .delete-profile:hover {
-            color: #cc0000;
+            color: #e60000;
+            transform: scale(1.1);
         }
         .profile-list li.active .delete-profile {
-            color: #fff;
+            color: rgba(255, 255, 255, 0.8);
         }
         .profile-list li.active .delete-profile:hover {
-            color: #fdd;
+            color: #fff;
         }
 
 
         /* Центральная область */
         .main-content {
-            flex: 3; /* Занимает большую часть доступного пространства */
-            min-width: 300px; /* Минимальная ширина, чтобы не схлопнуться */
+            flex: 3;
+            min-width: 320px; /* Увеличена минимальная ширина */
         }
 
         .meal-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Карточки чуть шире */
+            gap: 25px;
         }
 
         .meal-card {
             background-color: var(--card-bg);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
-            padding: 20px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
             gap: 15px;
             position: relative;
+            transition: transform 0.2s ease, box-shadow var(--transition-speed);
+        }
+        .meal-card:hover {
+            transform: translateY(-3px); /* Легкое поднятие при наведении */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
         }
 
         .meal-card h4 {
             color: var(--primary-green);
-            font-size: 1.4em;
-            margin-bottom: 10px;
-            border-bottom: 1px solid var(--medium-gray);
-            padding-bottom: 8px;
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--medium-gray);
+            padding-bottom: 10px;
+            text-align: center;
+            font-weight: 600;
         }
 
         .meal-card .food-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 0;
-            border-bottom: 1px dashed var(--medium-gray);
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--light-gray);
+            font-size: 1em;
+            font-weight: 500;
         }
         .meal-card .food-item:last-child {
             border-bottom: none;
         }
 
         .meal-card .food-item span {
-            font-size: 0.95em;
+            color: var(--dark-gray);
         }
 
-        .meal-card .item-actions {
-            display: flex;
-            gap: 5px;
-        }
         .meal-card .item-actions button {
+            font-size: 1.1em;
+            padding: 5px;
+            border-radius: 50%; /* Круглые кнопки действий */
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             background: none;
             border: none;
-            font-size: 1em;
             cursor: pointer;
-            padding: 3px;
-            border-radius: 4px;
-            transition: background-color var(--transition-speed);
-        }
-        .meal-card .item-actions .edit-btn { color: var(--accent-orange); }
-        .meal-card .item-actions .delete-btn { color: #ff4d4d; }
-
-        .meal-card .item-actions button:hover {
-            background-color: var(--light-gray);
-        }
-
-        .meal-card .add-food-btn {
-            background-color: var(--primary-green);
-            color: #fff;
-            border: none;
-            border-radius: var(--border-radius);
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: 500;
-            margin-top: 10px;
             transition: background-color var(--transition-speed), transform 0.1s ease;
         }
-        .meal-card .add-food-btn:hover {
-            background-color: var(--dark-green);
-            transform: translateY(-2px);
-        }
-        .meal-card .add-food-btn:active {
-            transform: translateY(0);
+        .meal-card .item-actions .edit-btn { color: var(--accent-orange); }
+        .meal-card .item-actions .delete-btn { color: #ff6b6b; }
+
+        .meal-card .item-actions button:hover {
+            background-color: var(--medium-gray);
+            transform: scale(1.1);
         }
 
         .meal-summary {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid var(--medium-gray);
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 2px solid var(--medium-gray);
             font-weight: 600;
         }
         .meal-summary div {
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
         }
         .meal-summary span {
             color: var(--dark-green);
+            font-weight: 700;
+            min-width: 60px; /* Для выравнивания значений */
+            text-align: right;
+        }
+
+        .meal-card .add-food-btn, .meal-card .copy-meal-btn, .meal-card .add-recipe-btn {
+            padding: 12px 18px;
+            border-radius: 25px;
+            font-size: 1.05em;
+        }
+        .copy-meal-btn {
+            background-color: #607d8b; /* Blue-grey for copy */
+        }
+        .copy-meal-btn:hover {
+            background-color: #455a64;
+        }
+        .meal-card .add-recipe-btn {
+            background-color: #9c27b0; /* Purple for add recipe */
+        }
+        .meal-card .add-recipe-btn:hover {
+            background-color: #7b1fa2;
         }
 
         /* Правая панель */
         .right-panel {
-            flex: 0 0 300px; /* Фиксированная ширина на больших экранах */
+            flex: 0 0 320px; /* Увеличена ширина правой панели */
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
         }
 
         .daily-summary .summary-item {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 1.1em;
-            font-weight: 500;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 1.15em;
+            font-weight: 600;
         }
 
         .daily-summary .summary-item span:first-child {
             color: var(--dark-gray);
         }
         .daily-summary .summary-item span:last-child {
-            font-weight: 600;
+            font-weight: 700;
             color: var(--dark-green);
+            min-width: 70px; /* Для выравнивания значений */
+            text-align: right;
         }
 
         .daily-summary .progress-bar-container {
-            width: 100%;
-            background-color: var(--medium-gray);
-            border-radius: 5px;
-            overflow: hidden;
-            height: 15px;
-            margin-top: 5px;
+            height: 18px; /* Увеличена высота прогресс-бара */
+            border-radius: 9px;
+            margin-top: 6px;
         }
 
         .daily-summary .progress-bar {
-            height: 100%;
-            background-color: var(--accent-orange); /* Default */
-            border-radius: 5px;
-            width: 0%;
-            transition: width 0.5s ease-out;
+            border-radius: 9px;
         }
-        .daily-summary .progress-bar.calories { background-color: #ffc107; } /* Yellow for calories */
-        .daily-summary .progress-bar.proteins { background-color: #2196f3; } /* Blue for proteins */
-        .daily-summary .progress-bar.fats { background-color: #f44336; } /* Red for fats */
-        .daily-summary .progress-bar.carbs { background-color: #9c27b0; } /* Purple for carbs */
-
+        .daily-summary .progress-bar.calories { background-color: #ffc107; }
+        .daily-summary .progress-bar.proteins { background-color: #2196f3; }
+        .daily-summary .progress-bar.fats { background-color: #f44336; } /* Corrected class name */
+        .daily-summary .progress-bar.carbs { background-color: #9c27b0; }
 
         .daily-summary .progress-bar.over-limit {
-            background-color: #d32f2f; /* Darker red for over limit */
+            background-color: #d32f2f;
         }
 
         .daily-summary .advice-section {
-            background-color: #ffe0b2; /* Light orange background */
-            border-left: 5px solid var(--accent-orange);
-            padding: 15px;
+            background-color: #ffe0b2;
+            border-left: 6px solid var(--accent-orange); /* Утолщена линия */
+            padding: 20px;
             border-radius: var(--border-radius);
-            margin-top: 20px;
+            margin-top: 25px;
             color: #333;
+            font-size: 0.95em;
+            line-height: 1.7;
+            min-height: 100px;
         }
         .daily-summary .advice-section p {
-            font-size: 0.9em;
             color: #333;
+            margin-bottom: 8px;
+        }
+        .daily-summary .advice-section p:last-child {
+            margin-bottom: 0;
         }
 
+
         .charts-section {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid var(--medium-gray);
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 2px solid var(--medium-gray);
         }
-        .chart-bar-container {
+        .chart-bar-item {
             display: flex;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         .chart-label {
-            width: 60px;
-            font-size: 0.9em;
-            font-weight: 500;
-            text-align: right;
-            margin-right: 10px;
+            width: 70px;
+            font-size: 0.95em;
+            font-weight: 600;
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+        .chart-bar-container {
+            flex-grow: 1; /* Take remaining space */
+            height: 22px; /* Увеличена высота бара */
+            border-radius: 5px;
+            background-color: var(--medium-gray); /* Background for the bar */
+            display: flex;
+            align-items: center;
+            position: relative;
         }
         .chart-bar {
-            flex-grow: 1;
-            height: 20px;
-            background-color: var(--primary-green);
-            border-radius: 4px;
-            transition: width 0.5s ease-out;
+            height: 100%;
+            border-radius: 5px;
+            transition: width 0.5s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; /* Align value to the end of the bar */
+            padding-right: 5px;
+            overflow: hidden; /* Hide overflowing text if too short */
+            white-space: nowrap;
         }
-        .chart-bar.gi { background-color: var(--accent-orange); }
-        .chart-bar.gl { background-color: #673ab7; } /* Deep purple */
+        /* Color coding for GI */
+        .chart-bar.gi-low { background-color: #4CAF50; /* Green */ }
+        .chart-bar.gi-medium { background-color: #FFC107; /* Yellow */ }
+        .chart-bar.gi-high { background-color: #F44336; /* Red */ }
+
+        .gi-value {
+            font-size: 0.8em;
+            font-weight: 600;
+            color: #fff; /* White text for better contrast on colored bars */
+            text-shadow: 0 0 2px rgba(0,0,0,0.5);
+            margin-left: auto; /* Push to the end of the bar */
+            padding-right: 5px;
+        }
 
 
         /* Модальные окна */
@@ -440,104 +486,105 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            display: flex;
+            background-color: rgba(0, 0, 0, 0.7); /* Более темный оверлей */
+            display: flex; /* Использовать flexbox для центрирования */
             justify-content: center;
             align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
+            z-index: 1000; /* Убедимся, что поверх всего */
+            opacity: 0; /* Скрыто по умолчанию */
+            visibility: hidden; /* Скрыто от взаимодействия */
             transition: opacity var(--transition-speed), visibility var(--transition-speed);
         }
         .modal-overlay.active {
-            opacity: 1;
+            opacity: 1; /* Показать при активном классе */
             visibility: visible;
         }
 
         .modal-content {
             background-color: var(--card-bg);
-            padding: 30px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
-            max-width: 500px;
-            width: 90%;
-            transform: translateY(-20px);
-            transition: transform var(--transition-speed);
+            padding: 35px; /* Увеличен паддинг */
+            max-width: 550px; /* Увеличена максимальная ширина */
+            width: 90%; /* Адаптивность */
             position: relative;
+            transform: translateY(20px); /* Небольшое смещение для анимации */
+            transition: transform var(--transition-speed);
+            max-height: 90vh; /* Добавлено ограничение высоты модального окна */
+            overflow-y: auto; /* Добавлен скролл для содержимого модального окна */
         }
         .modal-overlay.active .modal-content {
-            transform: translateY(0);
+            transform: translateY(0); /* Возвращение в исходное положение */
         }
 
         .modal-content h2 {
             color: var(--dark-green);
-            margin-bottom: 20px;
-            font-size: 1.5em;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--medium-gray);
+            padding-bottom: 12px;
             text-align: center;
+            font-weight: 600;
         }
         .modal-content label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
+            display: block; /* Каждая метка на новой строке */
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--dark-gray);
+            font-size: 1.05em;
         }
         .modal-content input[type="text"],
         .modal-content input[type="number"],
+        .modal-content input[type="date"],
         .modal-content select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
+            width: 100%; /* Занимают всю ширину */
+            padding: 12px; /* Увеличен паддинг полей ввода */
+            margin-bottom: 20px;
             border: 1px solid var(--medium-gray);
-            border-radius: var(--border-radius);
+            border-radius: 8px; /* Более мягкие углы */
             font-size: 1em;
-        }
-        .modal-content input[type="text"]::placeholder {
-            color: #999;
         }
 
         .modal-content .autocomplete-results {
-            max-height: 200px;
+            position: absolute; /* Позиционируем относительно родителя */
+            width: calc(100% - 70px); /* Ширина такая же как у поля ввода минус паддинг */
+            max-height: 200px; /* Ограничение высоты */
             overflow-y: auto;
+            background-color: var(--card-bg);
             border: 1px solid var(--medium-gray);
             border-top: none;
             border-radius: 0 0 var(--border-radius) var(--border-radius);
-            background-color: var(--card-bg);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            margin-top: -15px; /* Adjust to overlap with input border */
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 1001;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            z-index: 1001; /* Поверх модального окна */
+            left: 35px; /* Выравнивание по левому краю модального контента */
+            top: auto; /* Позволяем браузеру определить позицию */
         }
         .modal-content .autocomplete-results div {
-            padding: 10px;
+            padding: 12px;
             cursor: pointer;
-            transition: background-color var(--transition-speed);
             border-bottom: 1px solid var(--light-gray);
         }
         .modal-content .autocomplete-results div:last-child {
             border-bottom: none;
         }
         .modal-content .autocomplete-results div:hover {
-            background-color: var(--light-gray);
-        }
-        .modal-content .autocomplete-results div.selected {
             background-color: var(--medium-gray);
         }
 
-
         .modal-content .modal-buttons {
+            margin-top: 25px;
             display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-top: 20px;
+            justify-content: flex-end; /* Кнопки справа */
+            gap: 15px; /* Отступ между кнопками */
         }
         .modal-content .modal-buttons button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: 500;
-            transition: background-color var(--transition-speed), transform 0.1s ease;
+            padding: 12px 25px; /* Увеличен паддинг кнопок */
+            border-radius: 25px; /* Округлые кнопки */
+            font-size: 1.05em;
+            font-weight: 600;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+            width: auto; /* Убрать 100% ширину */
+            margin-bottom: 0; /* Убрать лишний margin-bottom */
         }
         .modal-content .modal-buttons button.confirm-btn {
             background-color: var(--primary-green);
@@ -546,33 +593,32 @@
         .modal-content .modal-buttons button.confirm-btn:hover {
             background-color: var(--dark-green);
             transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
         }
         .modal-content .modal-buttons button.cancel-btn {
             background-color: var(--medium-gray);
             color: var(--text-color);
         }
         .modal-content .modal-buttons button.cancel-btn:hover {
-            background-color: darken(var(--medium-gray), 10%);
+            background-color: #c0c0c0; /* Замена darken(var(--medium-gray), 10%) */
             transform: translateY(-2px);
-        }
-        .modal-content .modal-buttons button:active {
-            transform: translateY(0);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
         }
 
-        /* Кнопка закрытия модального окна */
         .close-modal {
             position: absolute;
             top: 15px;
-            right: 15px;
+            right: 20px;
             background: none;
             border: none;
-            font-size: 1.8em;
+            font-size: 2.2em; /* Крупнее крестик */
             color: var(--dark-gray);
             cursor: pointer;
-            transition: color var(--transition-speed);
+            transition: color var(--transition-speed), transform 0.1s ease;
         }
         .close-modal:hover {
             color: var(--accent-orange);
+            transform: rotate(90deg); /* Поворот при наведении */
         }
 
         /* Сообщения (уведомления) */
@@ -581,90 +627,122 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            padding: 12px 20px;
-            border-radius: var(--border-radius);
-            z-index: 1002;
+            background-color: var(--dark-green);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 25px; /* Более округлые уведомления */
+            font-size: 1.05em;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1002; /* Поверх модальных окон */
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
-            box-shadow: var(--shadow);
+            transition: opacity var(--transition-speed), visibility var(--transition-speed);
         }
         .message-box.show {
             opacity: 1;
             visibility: visible;
         }
 
-        /* Стили для формы добавления/редактирования продуктов */
-        .product-form .product-details label {
-            display: inline-block;
-            width: 48%; /* Для двух колонок */
-            margin-right: 4%;
-            margin-bottom: 10px;
-        }
-        .product-form .product-details label:nth-child(2n) {
-            margin-right: 0;
-        }
-        .product-form .product-details input {
-            width: 100%;
-        }
-        .product-form .form-group {
-            margin-bottom: 15px;
-        }
-        .product-form .form-group label {
-            margin-bottom: 5px;
-        }
 
         /* Прогресс-бар для целей КБЖУ */
         .target-progress-section {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid var(--medium-gray);
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 2px solid var(--medium-gray);
         }
         .target-item {
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
         .target-item h4 {
-            font-size: 1em;
-            margin-bottom: 5px;
+            font-size: 1.1em;
+            margin-bottom: 8px;
             color: var(--dark-gray);
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
+            font-weight: 600;
         }
         .target-item h4 span {
-            font-weight: normal;
-            font-size: 0.9em;
-            color: #666;
+            font-weight: 700;
+            font-size: 1em;
+            color: var(--dark-green);
         }
         .target-progress-bar-container {
-            background-color: var(--medium-gray);
-            border-radius: 5px;
-            height: 12px;
-            overflow: hidden;
+            height: 15px;
+            border-radius: 7.5px;
         }
         .target-progress-bar {
-            height: 100%;
-            background-color: var(--primary-green);
-            border-radius: 5px;
-            width: 0%;
-            transition: width 0.5s ease-out;
+            border-radius: 7.5px;
+            background-color: var(--accent-orange); /* Базовый цвет акцента */
         }
         .target-progress-bar.over-limit {
             background-color: #d32f2f;
         }
 
+        /* Weight Tracking */
+        .weight-tracking {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 2px solid var(--medium-gray);
+        }
+        .weight-tracking label {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .weight-tracking input {
+            padding: 10px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+        .weight-tracking button {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .weight-history-list {
+            list-style: none;
+            padding: 0;
+            max-height: 150px;
+            overflow-y: auto;
+            border: 1px solid var(--medium-gray);
+            border-radius: var(--border-radius);
+            padding: 10px;
+        }
+        .weight-history-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--light-gray);
+            font-size: 0.95em;
+            color: var(--dark-gray);
+        }
+        .weight-history-list li:last-child {
+            border-bottom: none;
+        }
+
+
         /* Адаптивный дизайн */
         @media (max-width: 1024px) {
             .container {
                 flex-direction: column;
+                padding: 20px;
+                gap: 20px;
             }
-            .left-panel, .right-panel {
-                flex: 1 1 100%; /* Занимают всю ширину */
+            .left-panel, .right-panel, .main-content {
+                flex: 1 1 100%;
+                padding: 20px;
             }
             .meal-cards {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+            }
+            header {
+                padding: 15px 20px;
+            }
+            header .logo {
+                font-size: 1.8em;
+            }
+            header .user-profile {
+                font-size: 1em;
+            }
+            .left-panel h3, .right-panel h3, .modal-content h2 {
+                font-size: 1.4em;
             }
         }
 
@@ -683,10 +761,13 @@
                 gap: 15px;
             }
             .meal-card {
-                padding: 15px;
+                padding: 18px;
             }
             .modal-content {
-                padding: 20px;
+                padding: 25px;
+            }
+            .modal-content h2 {
+                font-size: 1.5em;
             }
         }
 
@@ -700,136 +781,53 @@
             .left-panel, .right-panel, .main-content {
                 padding: 15px;
             }
+            .meal-card h4 {
+                font-size: 1.4em;
+            }
             .modal-content h2 {
                 font-size: 1.3em;
             }
             .modal-content input, .modal-content select, .modal-content button {
                 font-size: 0.9em;
             }
+            .meal-card .food-item span {
+                font-size: 0.9em;
+            }
+            .meal-summary div {
+                font-size: 0.95em;
+            }
         }
         /* Стили для выделения продуктов Best&People */
         .food-item.best-people-product {
             background-color: #e8f5e9; /* Светло-зеленый фон */
-            border-radius: 4px;
-            padding: 5px 8px;
-            margin: 5px 0;
-            border-left: 4px solid var(--primary-green);
+            border-radius: 6px;
+            padding: 8px 10px;
+            margin: 6px 0;
+            border-left: 5px solid var(--primary-green);
         }
         .food-item.best-people-product span {
-            font-weight: 500;
-        }
-        .copy-meal-btn {
-            background-color: #607d8b; /* Blue-grey for copy */
-            color: #fff;
-            border: none;
-            border-radius: var(--border-radius);
-            padding: 8px 12px;
-            cursor: pointer;
-            font-size: 0.9em;
-            font-weight: 500;
-            transition: background-color var(--transition-speed);
-            margin-top: 10px;
-        }
-        .copy-meal-btn:hover {
-            background-color: #455a64;
-        }
-        .copy-meal-btn:active {
-            transform: translateY(0);
+            font-weight: 600;
+            color: var(--dark-green);
         }
 
-        .export-data-btn {
-            background-color: #03a9f4; /* Light blue for export */
-            color: #fff;
-            border: none;
-            border-radius: var(--border-radius);
-            padding: 8px 12px;
-            cursor: pointer;
-            font-size: 0.9em;
-            font-weight: 500;
-            transition: background-color var(--transition-speed);
-            margin-top: 10px;
-        }
-        .export-data-btn:hover {
-            background-color: #0288d1;
-        }
-        .export-data-btn:active {
-            transform: translateY(0);
-        }
-        .meal-card .add-recipe-btn {
-            background-color: #9c27b0; /* Purple for add recipe */
-            color: #fff;
-            border: none;
-            border-radius: var(--border-radius);
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: 500;
-            margin-top: 10px;
-            transition: background-color var(--transition-speed), transform 0.1s ease;
-        }
-        .meal-card .add-recipe-btn:hover {
-            background-color: #7b1fa2;
-            transform: translateY(-2px);
-        }
-        .meal-card .add-recipe-btn:active {
-            transform: translateY(0);
-        }
-        /* Вкладки для формы добавления продукта/рецепта */
-        .tab-buttons {
-            display: flex;
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--medium-gray);
-        }
-        .tab-button {
-            flex: 1;
-            padding: 10px 0;
-            text-align: center;
-            background-color: var(--light-gray);
-            border: none;
-            border-radius: var(--border-radius) var(--border-radius) 0 0;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--text-color);
-            transition: background-color var(--transition-speed);
-        }
-        .tab-button.active {
-            background-color: var(--card-bg);
-            border-bottom: 3px solid var(--primary-green);
-            color: var(--primary-green);
-        }
-        .tab-button:hover:not(.active) {
-            background-color: var(--medium-gray);
-        }
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        /* Style for LLM advice button */
+        /* Стили для кнопок LLM и загрузки */
         #get-llm-advice-btn {
-            background-color: #FF9800; /* Orange accent */
-            color: #fff;
-            border: none;
-            border-radius: var(--border-radius);
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: 500;
-            margin-top: 15px;
-            width: 100%;
-            transition: background-color var(--transition-speed), transform 0.1s ease;
+            background-color: var(--accent-orange);
+            font-size: 1.1em;
+            padding: 14px 20px;
+            border-radius: 30px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(255,152,0,0.3);
         }
         #get-llm-advice-btn:hover {
             background-color: #e68900;
-            transform: translateY(-2px);
-        }
-        #get-llm-advice-btn:active {
-            transform: translateY(0);
+            box-shadow: 0 6px 12px rgba(255,152,0,0.4);
         }
         #get-llm-advice-btn:disabled {
             background-color: #ccc;
             cursor: not-allowed;
+            box-shadow: none;
+            transform: translateY(0);
         }
         .advice-section.loading {
             opacity: 0.7;
@@ -839,9 +837,92 @@
             content: 'Загрузка...';
             display: block;
             text-align: center;
-            margin-top: 10px;
+            margin-top: 15px;
             font-style: italic;
             color: var(--dark-green);
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+
+        /* Вкладки для формы добавления продукта/рецепта */
+        .tab-buttons {
+            display: flex;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--medium-gray);
+        }
+        .tab-button {
+            flex: 1;
+            padding: 12px 0;
+            text-align: center;
+            background-color: var(--light-gray);
+            border: none;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-color);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            font-size: 1.05em;
+            position: relative;
+            top: 2px; /* Поднимаем для имитации вкладки */
+        }
+        .tab-button.active {
+            background-color: var(--card-bg);
+            border-bottom: 3px solid var(--primary-green);
+            color: var(--primary-green);
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+            font-weight: 700;
+        }
+        .tab-button:hover:not(.active) {
+            background-color: var(--medium-gray);
+        }
+        .tab-content {
+            padding-top: 10px; /* Отступ после вкладок */
+        }
+        .form-group { /* Changed from .product-form .form-group */
+            margin-bottom: 20px;
+        }
+        .profile-management button.export-data-btn {
+            margin-top: 20px; /* Увеличен отступ для кнопки экспорта */
+        }
+
+        .import-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .import-section input[type="file"] {
+            padding: 10px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            background-color: #fcfcfc;
+            cursor: pointer;
+        }
+        /* New styles for recipe ingredient list in create recipe modal */
+        .recipe-ingredients-list {
+            max-height: 250px;
+            overflow-y: auto;
+            border: 1px solid var(--medium-gray);
+            border-radius: var(--border-radius);
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .recipe-ingredients-list .food-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--light-gray);
+        }
+        .recipe-ingredients-list .food-item:last-child {
+            border-bottom: none;
+        }
+        .recipe-ingredients-list .food-item span {
+            font-weight: 500;
+        }
+        .recipe-ingredients-list .item-actions .delete-btn {
+            font-size: 1.2em;
+            color: #ff6b6b;
         }
     </style>
 </head>
@@ -878,12 +959,18 @@
                     </ul>
                 </div>
                 <button id="export-user-data-btn" class="export-data-btn">Экспорт данных текущего профиля</button>
+                <div class="import-section">
+                    <label for="import-file-input" style="text-align: center; margin-bottom: 5px;">Импорт данных профиля:</label>
+                    <input type="file" id="import-file-input" accept=".json">
+                    <button id="import-user-data-btn">Импортировать данные</button>
+                </div>
             </div>
             <!-- Секция для добавления своих продуктов и рецептов -->
             <div class="custom-items-section">
                 <h3>Мои продукты и рецепты</h3>
-                <button id="add-custom-product-btn" class="add-food-btn">Добавить свой продукт</button>
-                <button id="add-custom-recipe-btn" class="add-recipe-btn">Создать рецепт</button>
+                <!-- Кнопка "Добавить продукт в прием пищи" удалена -->
+                <button id="create-custom-product-btn" class="add-food-btn">Добавить свой продукт</button>
+                <button id="create-new-recipe-btn" class="add-recipe-btn">Создать новый рецепт</button>
             </div>
         </aside>
 
@@ -969,18 +1056,43 @@
                 </div>
 
                 <div class="charts-section">
-                    <h3>Распределение по приемам</h3>
-                    <div>Завтрак <div class="chart-bar-container"><span class="chart-label">ГИ:</span><div class="chart-bar gi" id="gi-breakfast"></div></div></div>
-                    <div>Обед <div class="chart-bar-container"><span class="chart-label">ГИ:</span><div class="chart-bar gi" id="gi-lunch"></div></div></div>
-                    <div>Ужин <div class="chart-bar-container"><span class="chart-label">ГИ:</span><div class="chart-bar gi" id="gi-dinner"></div></div></div>
-                    <div>Перекусы <div class="chart-bar-container"><span class="chart-label">ГИ:</span><div class="chart-bar gi" id="gi-snacks"></div></div></div>
+                    <h3>Распределение по приемам (ГИ)</h3>
+                    <div class="chart-bar-item">
+                        <span class="chart-label">Завтрак:</span>
+                        <div class="chart-bar-container">
+                            <div class="chart-bar" id="gi-breakfast"><span class="gi-value">0</span></div>
+                        </div>
+                    </div>
+                    <div class="chart-bar-item">
+                        <span class="chart-label">Обед:</span>
+                        <div class="chart-bar-container">
+                            <div class="chart-bar" id="gi-lunch"><span class="gi-value">0</span></div>
+                        </div>
+                    </div>
+                    <div class="chart-bar-item">
+                        <span class="chart-label">Ужин:</span>
+                        <div class="chart-bar-container">
+                            <div class="chart-bar" id="gi-dinner"><span class="gi-value">0</span></div>
+                        </div>
+                    </div>
+                    <div class="chart-bar-item">
+                        <span class="chart-label">Перекусы:</span>
+                        <div class="chart-bar-container">
+                            <div class="chart-bar" id="gi-snacks"><span class="gi-value">0</span></div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 15px; font-size: 0.9em; text-align: center; color: var(--dark-gray);">
+                        *ГИ: 0-55 (🟢 низкий), 56-69 (🟠 средний), 70+ (🔴 высокий)
+                    </p>
                 </div>
             </div>
             <!-- Секция для ввода веса -->
             <div class="weight-tracking">
                 <h3>Отслеживание веса</h3>
+                <label for="weight-date-input">Дата замера:</label>
+                <input type="date" id="weight-date-input" required>
                 <label for="weight-input">Текущий вес (кг):</label>
-                <input type="number" id="weight-input" min="0" step="0.1" placeholder="Введите ваш вес">
+                <input type="number" id="weight-input" min="0" step="0.1" placeholder="Введите ваш вес" required>
                 <button id="add-weight-btn" class="add-food-btn">Добавить вес</button>
                 <h4>История веса:</h4>
                 <ul id="weight-history-list">
@@ -998,8 +1110,8 @@
             <div id="create-profile-form">
                 <label for="new-username">Имя пользователя:</label>
                 <input type="text" id="new-username" placeholder="Введите ваше имя" required>
-                <label for="new-userid">Уникальный ID (например, год рождения + первые буквы фамилии):</label>
-                <input type="text" id="new-userid" placeholder="Например, 1976Soldatenko" required>
+                <label for="new-userid">Уникальный ID (например, цифры, имя_фамилия, или случайный набор):</label>
+                <input type="text" id="new-userid" placeholder="Например, 12345 или ivan_petrov" required>
                 <div class="modal-buttons">
                     <button class="confirm-btn" id="save-new-profile-btn">Создать</button>
                     <button class="cancel-btn" id="cancel-create-profile-btn">Отмена</button>
@@ -1017,86 +1129,121 @@
         </div>
     </div>
 
-    <!-- Модальное окно для добавления/редактирования продукта -->
-    <div class="modal-overlay" id="add-edit-product-modal">
-        <div class="modal-content product-form">
-            <button class="close-modal" id="close-add-edit-product-modal">&times;</button>
-            <h2 id="product-modal-title">Добавить продукт</h2>
+    <!-- Модальное окно для добавления/редактирования продукта и рецепта в прием пищи -->
+    <div class="modal-overlay" id="add-to-meal-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-add-to-meal-modal">&times;</button>
+            <h2 id="add-to-meal-modal-title">Добавить продукт в прием пищи</h2>
 
             <div class="tab-buttons">
-                <button class="tab-button active" data-tab="product">Продукт</button>
-                <button class="tab-button" data-tab="recipe">Рецепт</button>
-                <button class="tab-button" data-tab="custom-product">Свой продукт</button>
+                <button class="tab-button active" data-tab="add-product">Выбрать продукт</button>
+                <button class="tab-button" data-tab="add-recipe">Выбрать рецепт</button>
             </div>
 
-            <div id="product-tab-content" class="tab-content active">
+            <div id="add-product-tab-content" class="tab-content active">
                 <div class="form-group">
-                    <label for="product-name">Название продукта:</label>
-                    <input type="text" id="product-name" placeholder="Начните вводить название продукта..." autocomplete="off">
-                    <div class="autocomplete-results" id="autocomplete-results"></div>
+                    <label for="product-search-input">Поиск продукта (из базы или своих):</label>
+                    <input type="text" id="product-search-input" placeholder="Начните вводить название продукта..." autocomplete="off">
+                    <div class="autocomplete-results" id="product-autocomplete-results"></div>
                 </div>
                 <div class="form-group">
                     <label for="product-grams">Порция (граммы):</label>
                     <input type="number" id="product-grams" min="1" value="100" required>
                 </div>
                 <div class="product-details" id="selected-product-details">
-                    <!-- Здесь будут отображаться КБЖУ и ГИ выбранного продукта -->
+                    <p>Выберите продукт для просмотра КБЖУ и ГИ.</p>
                 </div>
                 <div class="modal-buttons">
-                    <button class="confirm-btn" id="save-product-btn">Добавить</button>
-                    <button class="cancel-btn" id="cancel-add-product-btn">Отмена</button>
+                    <button class="confirm-btn" id="save-product-to-meal-btn">Добавить в прием пищи</button>
+                    <button class="cancel-btn" id="cancel-product-add-edit-btn">Отмена</button>
                 </div>
             </div>
 
-            <div id="recipe-tab-content" class="tab-content">
+            <div id="add-recipe-tab-content" class="tab-content">
                 <div class="form-group">
-                    <label for="recipe-name">Название рецепта:</label>
-                    <input type="text" id="recipe-name" placeholder="Например, 'Мой завтрак'" required>
+                    <label for="recipe-search-input">Поиск рецепта (из сохраненных вами):</label>
+                    <input type="text" id="recipe-search-input" placeholder="Начните вводить название рецепта..." autocomplete="off">
+                    <div class="autocomplete-results" id="recipe-search-autocomplete-results"></div>
                 </div>
                 <div class="form-group">
-                    <h4>Ингредиенты рецепта:</h4>
-                    <div id="recipe-ingredients-list">
-                        <!-- Ингредиенты рецепта будут здесь -->
-                    </div>
-                    <label for="recipe-product-search">Добавить ингредиент:</label>
-                    <input type="text" id="recipe-product-search" placeholder="Поиск продукта..." autocomplete="off">
-                    <div class="autocomplete-results" id="recipe-autocomplete-results"></div>
+                    <label for="recipe-grams">Порция рецепта (граммы):</label>
+                    <input type="number" id="recipe-grams" min="1" value="100" required>
+                </div>
+                <div class="recipe-details" id="selected-recipe-details">
+                    <p>Выберите рецепт для просмотра КБЖУ.</p>
                 </div>
                 <div class="modal-buttons">
-                    <button class="confirm-btn" id="save-recipe-btn">Сохранить рецепт</button>
-                    <button class="cancel-btn" id="cancel-recipe-btn">Отмена</button>
+                    <button class="confirm-btn" id="save-recipe-to-meal-btn">Добавить в прием пищи</button>
+                    <button class="cancel-btn" id="cancel-recipe-add-edit-btn">Отмена</button>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <div id="custom-product-tab-content" class="tab-content">
-                <div class="form-group">
-                    <label for="custom-product-name">Название продукта:</label>
-                    <input type="text" id="custom-product-name" placeholder="Например, 'Домашние сырники'" required>
+    <!-- Модальное окно для создания своего продукта (перенесено) -->
+    <div class="modal-overlay" id="create-custom-product-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-custom-product-modal">&times;</button>
+            <h2>Добавить свой продукт</h2>
+            <div class="form-group">
+                <p style="margin-bottom: 15px; color: var(--dark-gray); font-weight: 500;">
+                    Здесь вы можете добавить собственный продукт, которого нет в общей базе.
+                    Вводите данные вручную из проверенных источников.
+                </p>
+                <label for="custom-product-name">Название продукта:</label>
+                <input type="text" id="custom-product-name" placeholder="Например, 'Домашние сырники'" required>
+            </div>
+            <div class="form-group">
+                <label for="custom-product-calories">Калории (на 100г):</label>
+                <input type="number" id="custom-product-calories" min="0" step="1" value="0">
+            </div>
+            <div class="form-group">
+                <label for="custom-product-proteins">Белки (на 100г):</label>
+                <input type="number" id="custom-product-proteins" min="0" step="0.1" value="0">
+            </div>
+            <div class="form-group">
+                <label for="custom-product-fats">Жиры (на 100г):</label>
+                <input type="number" id="custom-product-fats" min="0" step="0.1" value="0">
+            </div>
+            <div class="form-group">
+                <label for="custom-product-carbs">Углеводы (на 100г):</label>
+                <input type="number" id="custom-product-carbs" min="0" step="0.1" value="0">
+            </div>
+            <div class="form-group">
+                <label for="custom-product-gi">Гликемический индекс (ГИ):</label>
+                <input type="number" id="custom-product-gi" min="0" max="100" step="1" value="0">
+            </div>
+            <div class="modal-buttons">
+                <button class="confirm-btn" id="save-custom-product-btn">Сохранить свой продукт</button>
+                <button class="cancel-btn" id="cancel-custom-product-creation-btn">Отмена</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для создания нового рецепта (перенесено) -->
+    <div class="modal-overlay" id="create-new-recipe-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-new-recipe-modal">&times;</button>
+            <h2>Создать новый рецепт</h2>
+            <div class="form-group">
+                <label for="new-recipe-name">Название рецепта:</label>
+                <input type="text" id="new-recipe-name" placeholder="Например, 'Омлет с овощами'" required>
+            </div>
+            <div class="form-group">
+                <h4>Ингредиенты рецепта:</h4>
+                <div id="new-recipe-ingredients-list" class="recipe-ingredients-list">
+                    <p>Пока нет ингредиентов. Используйте поиск, чтобы добавить их.</p>
                 </div>
-                <div class="form-group">
-                    <label for="custom-product-calories">Калории (на 100г):</label>
-                    <input type="number" id="custom-product-calories" min="0" step="1" value="0">
-                </div>
-                <div class="form-group">
-                    <label for="custom-product-proteins">Белки (на 100г):</label>
-                    <input type="number" id="custom-product-proteins" min="0" step="0.1" value="0">
-                </div>
-                <div class="form-group">
-                    <label for="custom-product-fats">Жиры (на 100г):</label>
-                    <input type="number" id="custom-product-fats" min="0" step="0.1" value="0">
-                </div>
-                <div class="form-group">
-                    <label for="custom-product-carbs">Углеводы (на 100г):</label>
-                    <input type="number" id="custom-product-carbs" min="0" step="0.1" value="0">
-                </div>
-                <div class="form-group">
-                    <label for="custom-product-gi">Гликемический индекс (ГИ):</label>
-                    <input type="number" id="custom-product-gi" min="0" max="100" step="1" value="0">
-                </div>
-                <div class="modal-buttons">
-                    <button class="confirm-btn" id="save-custom-product-btn">Сохранить продукт</button>
-                    <button class="cancel-btn" id="cancel-custom-product-btn">Отмена</button>
-                </div>
+                <label for="new-recipe-product-search">Добавить ингредиент (поиск по продуктам и вашим рецептам):</label>
+                <input type="text" id="new-recipe-product-search" placeholder="Поиск продукта или рецепта..." autocomplete="off">
+                <div class="autocomplete-results" id="new-recipe-autocomplete-results"></div>
+            </div>
+            <div class="recipe-summary-total" id="new-recipe-summary-total" style="margin-top: 20px; border-top: 1px solid var(--medium-gray); padding-top: 15px; font-weight: 600;">
+                <!-- Summaries for new recipe will go here -->
+            </div>
+            <div class="modal-buttons">
+                <button class="confirm-btn" id="save-new-recipe-btn">Сохранить рецепт</button>
+                <button class="cancel-btn" id="cancel-new-recipe-creation-btn">Отмена</button>
             </div>
         </div>
     </div>
@@ -1196,7 +1343,7 @@
             "Манка": { calories: 333, proteins: 10.3, fats: 1.0, carbs: 68.8, gi: 60, category: "Крупы и каши" },
             "Киноа": { calories: 120, proteins: 4.4, fats: 1.9, carbs: 21.3, gi: 35, category: "Крупы и каши" },
             "Булгур": { calories: 83, proteins: 3.1, fats: 0.2, carbs: 18.6, gi: 48, category: "Крупы и каши" },
-            "Кукурузная каша": { calories: 86, proteins: 2.7, fats: 0.6, carbs: 18.0, gi: 70, category: "Крупы и каши" },
+            "Кукурузная каша": { calories: 86, proteins: 2.7, fats: 0.6, carbs: 18.0, gi: 70, category: "Kрупы и каши" },
             "Ячневая крупа": { calories: 300, proteins: 9.9, fats: 1.3, carbs: 65.5, gi: 50, category: "Крупы и каши" },
 
             // Мясо и птица
@@ -1361,15 +1508,15 @@
             "Щи": { calories: 50, proteins: 2.5, fats: 2.0, carbs: 4.0, gi: 35, category: "Готовые блюда" },
             "Солянка": { calories: 100, proteins: 5.0, fats: 6.0, carbs: 6.0, gi: 45, category: "Готовые блюда" },
             "Окрошка": { calories: 60, proteins: 4.0, fats: 3.0, carbs: 3.0, gi: 30, category: "Готовые блюда" },
-            "Плов (с курицей)": { calories: 180, proteins: 8.0, fats: 10.0, carbs: 15.0, gi: 60, category: "Готовые блюда" },
-            "Котлеты (домашние)": { calories: 250, proteins: 15.0, fats: 18.0, carbs: 5.0, gi: 40, category: "Готовые блюда" },
-            "Тефтели": { calories: 180, proteins: 10.0, fats: 12.0, carbs: 8.0, gi: 45, category: "Готовые блюда" },
-            "Голубцы": { calories: 150, proteins: 8.0, fats: 10.0, carbs: 8.0, gi: 40, category: "Готовые блюда" },
-            "Пельмени": { calories: 270, proteins: 11.0, fats: 10.0, carbs: 35.0, gi: 60, category: "Готовые блюда" },
-            "Вареники (с картошкой)": { calories: 190, proteins: 5.0, fats: 5.0, carbs: 30.0, gi: 60, category: "Готовые блюда" },
-            "Блины с начинкой (творог)": { calories: 220, proteins: 8.0, fats: 10.0, carbs: 25.0, gi: 65, category: "Готовые блюда" },
-            "Гречка с мясом": { calories: 160, proteins: 9.0, fats: 7.0, carbs: 14.0, gi: 55, category: "Готовые блюда" },
-            "Макароны с сыром": { calories: 250, proteins: 10.0, fats: 12.0, carbs: 25.0, gi: 60, category: "Готовые блюда" },
+            "Plov (s kuricey)": { calories: 180, proteins: 8.0, fats: 10.0, carbs: 15.0, gi: 60, category: "Готовые блюда" },
+            "Kotle'ty (domashnie)": { calories: 250, proteins: 15.0, fats: 18.0, carbs: 5.0, gi: 40, category: "Готовые блюда" },
+            "Tefteli": { calories: 180, proteins: 10.0, fats: 12.0, carbs: 8.0, gi: 45, category: "Готовые блюда" },
+            "Golubcy": { calories: 150, proteins: 8.0, fats: 10.0, carbs: 8.0, gi: 40, category: "Готовые блюда" },
+            "Pel'meni": { calories: 270, proteins: 11.0, fats: 10.0, carbs: 35.0, gi: 60, category: "Готовые блюда" },
+            "Vareniki (s kartoshkoy)": { calories: 190, proteins: 5.0, fats: 5.0, carbs: 30.0, gi: 60, category: "Готовые блюда" },
+            "Bliny s nachinkoy (tvorog)": { calories: 220, proteins: 8.0, fats: 10.0, carbs: 25.0, gi: 65, category: "Готовые блюда" },
+            "Grechka s myasom": { calories: 160, proteins: 9.0, fats: 7.0, carbs: 14.0, gi: 55, category: "Готовые блюда" },
+            "Makaronu s syrom": { calories: 250, proteins: 10.0, fats: 12.0, carbs: 25.0, gi: 60, category: "Готовые блюда" },
 
             // Продукты Best&People - калории, белки, жиры, углеводы, ГИ - на порцию/100г как указано
             // Здесь предполагаем, что указанные значения - это на 100г, если не сказано иное.
@@ -1430,11 +1577,14 @@
         // Открыть модальное окно
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('active');
+            // Дополнительно, чтобы при открытии модала нельзя было скроллить основной контент
+            document.body.style.overflow = 'hidden';
         }
 
         // Закрыть модальное окно
         function closeModal(modalId) {
             document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = ''; // Вернуть скролл
         }
 
         // Показать модальное окно подтверждения
@@ -1444,21 +1594,28 @@
             const confirmBtn = document.getElementById('confirm-action-btn');
             const cancelBtn = document.getElementById('cancel-action-btn');
 
+            // Очищаем предыдущие слушатели, чтобы избежать многократных срабатываний
+            const oldConfirmBtn = confirmBtn.cloneNode(true);
+            const oldCancelBtn = cancelBtn.cloneNode(true);
+            confirmBtn.parentNode.replaceChild(oldConfirmBtn, confirmBtn);
+            cancelBtn.parentNode.replaceChild(oldCancelBtn, cancelBtn);
+
+            const newConfirmBtn = document.getElementById('confirm-action-btn');
+            const newCancelBtn = document.getElementById('cancel-action-btn');
+
             const handleConfirm = () => {
                 onConfirm();
                 closeModal('confirm-modal');
-                confirmBtn.removeEventListener('click', handleConfirm);
-                cancelBtn.removeEventListener('click', handleCancel);
+                // Слушатели удаляются автоматически, так как кнопки клонируются
             };
 
             const handleCancel = () => {
                 closeModal('confirm-modal');
-                confirmBtn.removeEventListener('click', handleConfirm);
-                cancelBtn.removeEventListener('click', handleCancel);
+                // Слушатели удаляются автоматически
             };
 
-            confirmBtn.addEventListener('click', handleConfirm);
-            cancelBtn.addEventListener('click', handleCancel);
+            newConfirmBtn.addEventListener('click', handleConfirm);
+            newCancelBtn.addEventListener('click', handleCancel);
         }
 
         // --- Управление данными пользователя (localStorage) ---
@@ -1531,7 +1688,7 @@
             userProfilesList.innerHTML = '';
             const profiles = loadUserProfiles();
             if (profiles.length === 0) {
-                userProfilesList.innerHTML = '<li>Нет сохраненных профилей.</li>';
+                userProfilesList.innerHTML = '<li style="text-align: center; color: var(--text-color);">Нет сохраненных профилей.</li>';
                 return;
             }
             profiles.forEach(profile => {
@@ -1625,6 +1782,9 @@
             document.getElementById('profile-modal-title').textContent = 'Создать новый профиль';
             document.getElementById('create-profile-form').style.display = 'block';
             document.getElementById('switch-profile-view').style.display = 'none';
+            // Reset input fields when opening create form
+            document.getElementById('new-username').value = '';
+            document.getElementById('new-userid').value = '';
             openModal('profile-modal');
         }
 
@@ -1663,14 +1823,14 @@
                 const product = item.product; // This is the product object from DB or custom
 
                 const multiplier = grams / 100;
-                totalCalories += product.calories * multiplier;
-                totalProteins += product.proteins * multiplier;
-                totalFats += product.fats * multiplier;
-                totalCarbs += product.carbs * multiplier;
+                totalCalories += (product.calories || 0) * multiplier;
+                totalProteins += (product.proteins || 0) * multiplier;
+                totalFats += (product.fats || 0) * multiplier;
+                totalCarbs += (product.carbs || 0) * multiplier;
 
-                if (product.gi !== undefined && product.gi !== null && product.carbs > 0) {
-                    totalGiProduct += product.gi * (product.carbs * multiplier);
-                    totalCarbsForGi += product.carbs * multiplier;
+                if (product.gi !== undefined && product.gi !== null && (product.carbs || 0) > 0) {
+                    totalGiProduct += (product.gi || 0) * ((product.carbs || 0) * multiplier);
+                    totalCarbsForGi += (product.carbs || 0) * multiplier;
                 }
             });
 
@@ -1691,7 +1851,7 @@
 
         function renderDailyLog() {
             if (!currentUserData) {
-                document.getElementById('meal-cards-container').innerHTML = '<p style="text-align:center; margin-top: 50px; font-size:1.2em;">Для начала работы создайте или выберите профиль.</p>';
+                document.getElementById('meal-cards-container').innerHTML = '<p style="text-align:center; margin-top: 50px; font-size:1.2em; color: var(--text-color);">Для начала работы создайте или выберите профиль.</p>';
                 document.getElementById('total-calories').textContent = '0 ккал';
                 document.getElementById('total-proteins').textContent = '0 г';
                 document.getElementById('total-fats').textContent = '0 г';
@@ -1700,7 +1860,8 @@
                 document.getElementById('total-gl').textContent = '0';
                 updateProgressBars(0, 0, 0, 0);
                 updateTargetProgressBars();
-                document.getElementById('nutrition-advice').textContent = 'Вводите данные о своем питании, чтобы получить персональные рекомендации.';
+                document.getElementById('nutrition-advice').innerHTML = '<p>Вводите данные о своем питании, чтобы получить персональные рекомендации.</p>';
+                document.getElementById('nutrition-advice').dataset.llmGenerated = 'false';
                 document.getElementById('current-username').textContent = 'Гость';
                 document.getElementById('weight-history-list').innerHTML = '';
                 // Disable LLM advice button if no user data
@@ -1786,13 +1947,13 @@
 
                 // Attach event listeners for add, edit, delete buttons
                 mealCard.querySelector('.add-food-btn').addEventListener('click', (event) => {
-                    openAddEditProductModal(event.target.dataset.meal-type);
+                    openAddToMealModal('add-product', event.target.dataset.mealType);
                 });
                 mealCard.querySelectorAll('.edit-btn').forEach(btn => {
                     btn.addEventListener('click', (event) => {
                         const mealType = event.target.dataset.mealType;
                         const index = parseInt(event.target.dataset.index);
-                        openAddEditProductModal(mealType, index);
+                        openAddToMealModal('add-product', mealType, index); // Now always opens to product, need to pass data
                     });
                 });
                 mealCard.querySelectorAll('.delete-btn').forEach(btn => {
@@ -1805,14 +1966,28 @@
                     });
                 });
                 mealCard.querySelector('.copy-meal-btn').addEventListener('click', (event) => {
-                    openCopyMealModal(event.target.dataset.mealType);
+                    openCopyMealModal(event.target.dataset.meal-type);
                 });
 
                 // Update GI bars for each meal
                 const giBar = document.getElementById(`gi-${mealKey}`);
+                const giValueSpan = giBar.querySelector('.gi-value');
+
                 if (giBar) {
-                    const giPercentage = (mealNutrients.gi / 100) * 100; // Scale GI to 100% max
+                    const gi = mealNutrients.gi;
+                    const giPercentage = (gi / 100) * 100; // Scale GI to 100% max
                     giBar.style.width = `${Math.min(100, giPercentage)}%`;
+                    giValueSpan.textContent = gi.toFixed(0);
+
+                    // Apply color based on GI value
+                    giBar.classList.remove('gi-low', 'gi-medium', 'gi-high');
+                    if (gi <= 55) {
+                        giBar.classList.add('gi-low');
+                    } else if (gi <= 69) {
+                        giBar.classList.add('gi-medium');
+                    } else {
+                        giBar.classList.add('gi-high');
+                    }
                 }
             }
 
@@ -1852,6 +2027,8 @@
 
 
         function updateProgressBars(calories, proteins, fats, carbs) {
+            if (!currentUserData) return;
+
             const targets = {
                 calories: currentUserData.targetCalories,
                 proteins: currentUserData.targetProteins,
@@ -1885,6 +2062,8 @@
         }
 
         function updateTargetProgressBars() {
+            if (!currentUserData) return;
+
             const targets = {
                 calories: currentUserData.targetCalories,
                 proteins: currentUserData.targetProteins,
@@ -1934,6 +2113,8 @@
 
         // Basic nutrition advice
         function updateNutritionAdvice(calories, proteins, fats, carbs) {
+            if (!currentUserData) return;
+
             const adviceElement = document.getElementById('nutrition-advice');
             adviceElement.dataset.llmGenerated = 'false'; // Mark as non-LLM generated
             const targets = {
@@ -1994,7 +2175,9 @@
             adviceElement.innerHTML = '<p>Генерируем персональные рекомендации...</p>';
 
 
-            const prompt = `На основе следующих данных о питании за день (фактическое потребление и цели), предоставьте развернутые, персонализированные советы по сбалансированности рациона на русском языке. Учитывайте КБЖУ, ГИ, ГН. Объясните, как можно скорректировать рацион для лучшего достижения целей.
+            const prompt = `Вы опытный нутрициолог, основатель компании Best&People, Андрей Солдатенко. Ваш коммуникационный стиль: на "Вы", уважительный, профессиональный, честный, прямолинейный, без сюсюканья, краткий, строгий, логичный. Ваш юмор быстрый и остроумный, но только когда уместно. Ваши ценности: традиционный взгляд, уважение к прошлому и классическим подходам.
+
+На основе следующих данных о питании пользователя за день (фактическое потребление и цели), предоставьте развернутые, персонализированные советы по сбалансированности рациона на русском языке. Учитывайте КБЖУ, ГИ, ГН. Объясните, как можно скорректировать рацион для лучшего достижения целей.
 
 Фактическое потребление:
 Калории: ${currentDailyTotals.calories.toFixed(0)} ккал
@@ -2010,7 +2193,7 @@
 Жиры: ${currentUserData.targetFats} г
 Углеводы: ${currentUserData.targetCarbs} г
 
-Начните ответ с фразы 'Персональные рекомендации: ' и используйте параграфы для каждого отдельного совета.`;
+Начните ответ с фразы 'Персональные рекомендации от Андрея Солдатенко: ' и используйте параграфы для каждого отдельного совета.`;
 
             let chatHistory = [];
             chatHistory.push({ role: "user", parts: [{ text: prompt }] });
@@ -2073,62 +2256,110 @@
         }
 
 
-        // --- Логика добавления/редактирования продуктов ---
+        // --- Логика добавления/редактирования продуктов и рецептов ---
 
         let currentMealType = null;
         let editingProductIndex = -1; // -1 для нового продукта, иначе индекс редактируемого
+        let selectedProductForMeal = null; // Продукт, выбранный из автодополнения для добавления в прием пищи
+        let selectedRecipeForMeal = null; // Рецепт, выбранный из автодополнения для добавления в прием пищи
+        let currentRecipeIngredients = []; // Ингредиенты для нового создаваемого рецепта
 
-        function openAddEditProductModal(mealType, index = -1) {
+
+        function openAddToMealModal(tabToActivate, mealType = null, index = -1) {
+            if (!currentUserData) {
+                showMessage('Пожалуйста, создайте или выберите профиль, чтобы добавлять данные.');
+                return;
+            }
+
             currentMealType = mealType;
             editingProductIndex = index;
 
-            document.getElementById('product-modal-title').textContent = index === -1 ? 'Добавить продукт' : 'Редактировать продукт';
-
-            // Reset forms and tabs
-            document.getElementById('product-name').value = '';
+            // Reset forms and tabs specific to add-to-meal modal
+            document.getElementById('product-search-input').value = '';
             document.getElementById('product-grams').value = 100;
-            document.getElementById('selected-product-details').innerHTML = '';
-            document.getElementById('autocomplete-results').innerHTML = '';
-            document.getElementById('recipe-name').value = '';
-            document.getElementById('recipe-ingredients-list').innerHTML = '';
-            document.getElementById('recipe-product-search').value = '';
-            document.getElementById('recipe-autocomplete-results').innerHTML = '';
+            document.getElementById('selected-product-details').innerHTML = '<p>Выберите продукт для просмотра КБЖУ и ГИ.</p>';
+            document.getElementById('product-autocomplete-results').innerHTML = '';
+            selectedProductForMeal = null;
+
+            document.getElementById('recipe-search-input').value = '';
+            document.getElementById('recipe-grams').value = 100;
+            document.getElementById('selected-recipe-details').innerHTML = '<p>Выберите рецепт для просмотра КБЖУ.</p>';
+            document.getElementById('recipe-search-autocomplete-results').innerHTML = '';
+            selectedRecipeForMeal = null;
+
+            // Deactivate all tabs and content in add-to-meal modal
+            document.querySelectorAll('#add-to-meal-modal .tab-button').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('#add-to-meal-modal .tab-content').forEach(content => content.classList.remove('active'));
+
+            // Set modal title based on the active tab and context
+            let modalTitle = '';
+            if (tabToActivate === 'add-product') {
+                modalTitle = (index === -1) ? 'Добавить продукт в прием пищи' : 'Редактировать продукт';
+                document.getElementById('product-search-input').focus();
+            } else if (tabToActivate === 'add-recipe') {
+                modalTitle = 'Добавить рецепт в прием пищи';
+                document.getElementById('recipe-search-input').focus();
+            }
+            document.getElementById('add-to-meal-modal-title').textContent = modalTitle;
+
+
+            // Activate the correct tab and content
+            document.querySelector(`#add-to-meal-modal .tab-button[data-tab="${tabToActivate}"]`).classList.add('active');
+            document.getElementById(`${tabToActivate}-tab-content`).classList.add('active');
+
+            if (index !== -1 && tabToActivate === 'add-product') {
+                // If editing existing product, populate product tab
+                const productToEdit = currentUserData.dailyLogs[formatDate(displayedDate)][mealType][index];
+                document.getElementById('product-search-input').value = productToEdit.product.name;
+                document.getElementById('product-grams').value = productToEdit.grams;
+                selectedProductForMeal = productToEdit.product;
+                updateSelectedProductDetails(selectedProductForMeal);
+            }
+
+            openModal('add-to-meal-modal');
+        }
+
+        function openCreateCustomProductModal() {
+            if (!currentUserData) {
+                showMessage('Пожалуйста, создайте или выберите профиль, чтобы добавлять данные.');
+                return;
+            }
+            // Reset custom product form
             document.getElementById('custom-product-name').value = '';
             document.getElementById('custom-product-calories').value = 0;
             document.getElementById('custom-product-proteins').value = 0;
             document.getElementById('custom-product-fats').value = 0;
             document.getElementById('custom-product-carbs').value = 0;
             document.getElementById('custom-product-gi').value = 0;
-
-            // Activate default tab (Product)
-            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-            document.querySelector('.tab-button[data-tab="product"]').classList.add('active');
-            document.getElementById('product-tab-content').classList.add('active');
-
-
-            if (index !== -1) {
-                // Если редактируем существующий продукт
-                const productToEdit = currentUserData.dailyLogs[formatDate(displayedDate)][mealType][index];
-                document.getElementById('product-name').value = productToEdit.product.name;
-                document.getElementById('product-grams').value = productToEdit.grams;
-                // Show details for the product being edited
-                updateSelectedProductDetails(productToEdit.product);
-                // Switch to product tab
-                document.querySelector('.tab-button[data-tab="product"]').click();
-            }
-
-            openModal('add-edit-product-modal');
+            openModal('create-custom-product-modal');
         }
 
+        function openCreateNewRecipeModal() {
+            if (!currentUserData) {
+                showMessage('Пожалуйста, создайте или выберите профиль, чтобы добавлять данные.');
+                return;
+            }
+            // Reset new recipe form
+            document.getElementById('new-recipe-name').value = '';
+            currentRecipeIngredients = [];
+            renderRecipeIngredients(); // Clear ingredients list for new recipe
+            document.getElementById('new-recipe-product-search').value = '';
+            document.getElementById('new-recipe-autocomplete-results').innerHTML = '';
+            updateNewRecipeSummary(); // Clear summary
+
+            openModal('create-new-recipe-modal');
+        }
+
+
+        // Helper to update product details display
         function updateSelectedProductDetails(product) {
             const detailsDiv = document.getElementById('selected-product-details');
             if (product) {
                 detailsDiv.innerHTML = `
-                    <p>Калории: <strong>${product.calories.toFixed(1)}</strong> ккал</p>
-                    <p>Белки: <strong>${product.proteins.toFixed(1)}</strong> г</p>
-                    <p>Жиры: <strong>${product.fats.toFixed(1)}</strong> г</p>
-                    <p>Углеводы: <strong>${product.carbs.toFixed(1)}</strong> г</p>
+                    <p>Калории: <strong>${(product.calories || 0).toFixed(1)}</strong> ккал</p>
+                    <p>Белки: <strong>${(product.proteins || 0).toFixed(1)}</strong> г</p>
+                    <p>Жиры: <strong><strong>${(product.fats || 0).toFixed(1)}</strong> г</p>
+                    <p>Углеводы: <strong>${(product.carbs || 0).toFixed(1)}</strong> г</p>
                     <p>ГИ: <strong>${product.gi !== undefined && product.gi !== null ? product.gi.toFixed(0) : 'N/A'}</strong></p>
                 `;
             } else {
@@ -2136,13 +2367,39 @@
             }
         }
 
-        let selectedProduct = null; // Продукт, выбранный из автодополнения
+        // Helper to update recipe details display
+        function updateSelectedRecipeDetails(recipe) {
+            const detailsDiv = document.getElementById('selected-recipe-details');
+            if (recipe && recipe.isRecipe && recipe.originalRecipe) {
+                const nutrients = calculateNutrients(recipe.originalRecipe.ingredients);
+                // Calculate per 100g values for display in the "select recipe" tab
+                const totalGrams = calculateTotalGrams(recipe.originalRecipe.ingredients);
+                const scale = totalGrams > 0 ? (100 / totalGrams) : 0;
 
-        function handleProductSearch(event) {
+                detailsDiv.innerHTML = `
+                    <p>Калории (на 100г): <strong>${(nutrients.calories * scale).toFixed(1)}</strong> ккал</p>
+                    <p>Белки (на 100г): <strong>${(nutrients.proteins * scale).toFixed(1)}</strong> г</p>
+                    <p>Жиры (на 100г): <strong>${(nutrients.fats * scale).toFixed(1)}</strong> г</p>
+                    <p>Углеводы (на 100г): <strong>${(nutrients.carbs * scale).toFixed(1)}</strong> г</p>
+                    <p>ГИ: <strong>${nutrients.gi !== undefined && nutrients.gi !== null ? nutrients.gi.toFixed(0) : 'N/A'}</strong></p>
+                    <p style="font-style: italic;">(Расчет КБЖУ произведен исходя из общего веса рецепта: ${totalGrams.toFixed(0)} г)</p>
+                `;
+            } else {
+                detailsDiv.innerHTML = '<p>Выберите рецепт для просмотра КБЖУ.</p>';
+            }
+        }
+        function calculateTotalGrams(ingredients) {
+            return ingredients.reduce((sum, item) => sum + item.grams, 0);
+        }
+
+
+        // Handle product search for "Выбрать продукт" tab
+        function handleProductSearchForMeal(event) {
             const searchTerm = event.target.value.toLowerCase();
-            const resultsDiv = event.target.id === 'product-name' ? document.getElementById('autocomplete-results') : document.getElementById('recipe-autocomplete-results');
+            const resultsDiv = document.getElementById('product-autocomplete-results');
             resultsDiv.innerHTML = '';
-            selectedProduct = null; // Сбросить выбор
+            selectedProductForMeal = null;
+            updateSelectedProductDetails(null);
 
             if (searchTerm.length < 2) return;
 
@@ -2151,165 +2408,267 @@
             for (const key in allProducts) {
                 combinedProducts.push({ name: key, ...allProducts[key] });
             }
-            // Add recipes to search results
+
+            const filteredProducts = combinedProducts.filter(p =>
+                p.name.toLowerCase().includes(searchTerm)
+            ).slice(0, 10);
+
+            filteredProducts.forEach(product => {
+                const div = document.createElement('div');
+                div.textContent = product.name + (product.isBP ? ' (Best&People)' : '');
+                div.addEventListener('click', () => {
+                    document.getElementById('product-search-input').value = product.name;
+                    selectedProductForMeal = product;
+                    updateSelectedProductDetails(selectedProductForMeal);
+                    resultsDiv.innerHTML = '';
+                });
+                resultsDiv.appendChild(div);
+            });
+        }
+
+        // Handle recipe search for "Выбрать рецепт" tab
+        function handleRecipeSearchForMeal(event) {
+            const searchTerm = event.target.value.toLowerCase();
+            const resultsDiv = document.getElementById('recipe-search-autocomplete-results');
+            resultsDiv.innerHTML = '';
+            selectedRecipeForMeal = null;
+            updateSelectedRecipeDetails(null);
+
+            if (searchTerm.length < 2) return;
+
+            const filteredRecipes = currentUserData.recipes.filter(r =>
+                r.name.toLowerCase().includes(searchTerm)
+            ).slice(0, 10);
+
+            filteredRecipes.forEach(recipe => {
+                const div = document.createElement('div');
+                div.textContent = recipe.name;
+                div.addEventListener('click', () => {
+                    document.getElementById('recipe-search-input').value = recipe.name;
+                    selectedRecipeForMeal = {
+                        name: recipe.name,
+                        isRecipe: true,
+                        originalRecipe: recipe
+                    };
+                    updateSelectedRecipeDetails(selectedRecipeForMeal);
+                    resultsDiv.innerHTML = '';
+                });
+                resultsDiv.appendChild(div);
+            });
+        }
+
+        // Handle product/recipe search for "Создать рецепт" tab
+        function handleNewRecipeIngredientSearch(event) {
+            const searchTerm = event.target.value.toLowerCase();
+            const resultsDiv = document.getElementById('new-recipe-autocomplete-results');
+            resultsDiv.innerHTML = '';
+
+            if (searchTerm.length < 2) return;
+
+            const allProducts = { ...PRODUCT_DATABASE, ...currentUserData.customProducts };
+            const combinedProducts = [];
+            for (const key in allProducts) {
+                combinedProducts.push({ name: key, ...allProducts[key] });
+            }
+            // Add recipes to search results for ingredients
             if (currentUserData.recipes) {
                  currentUserData.recipes.forEach(recipe => {
                     combinedProducts.push({
                         name: recipe.name,
-                        calories: calculateNutrients(recipe.ingredients).calories,
-                        proteins: calculateNutrients(recipe.ingredients).proteins,
-                        fats: calculateNutrients(recipe.ingredients).fats,
-                        carbs: calculateNutrients(recipe.ingredients).carbs,
-                        gi: calculateNutrients(recipe.ingredients).gi,
                         isRecipe: true,
                         originalRecipe: recipe // Keep a reference to the original recipe structure
                     });
                 });
             }
 
+            const filteredItems = combinedProducts.filter(item =>
+                item.name.toLowerCase().includes(searchTerm)
+            ).slice(0, 10);
 
-            const filteredProducts = combinedProducts.filter(p =>
-                p.name.toLowerCase().includes(searchTerm)
-            ).slice(0, 10); // Ограничить до 10 результатов
-
-            filteredProducts.forEach(product => {
+            filteredItems.forEach(item => {
                 const div = document.createElement('div');
-                div.textContent = product.name + (product.isBP ? ' (Best&People)' : '') + (product.isRecipe ? ' (Рецепт)' : '');
+                div.textContent = item.name + (item.isBP ? ' (Best&People)' : '') + (item.isRecipe ? ' (Рецепт)' : '');
                 div.addEventListener('click', () => {
-                    if (event.target.id === 'product-name') {
-                        document.getElementById('product-name').value = product.name;
-                        selectedProduct = product;
-                        updateSelectedProductDetails(selectedProduct);
+                    // Check if the product exists in the main database or custom products
+                    const productExists = !!PRODUCT_DATABASE[item.name] || !!currentUserData.customProducts[item.name] || (item.isRecipe && !!currentUserData.recipes.find(r => r.name === item.name));
+
+                    if (!productExists && !item.isRecipe) { // If it's a new product and not a recipe, prompt to add it
+                        showMessage(`Продукт "${item.name}" не найден в вашей базе. Пожалуйста, добавьте его через "Добавить свой продукт" сначала.`);
                         resultsDiv.innerHTML = '';
-                    } else if (event.target.id === 'recipe-product-search') {
-                         addIngredientToRecipe(product);
-                         document.getElementById('recipe-product-search').value = ''; // Clear search
-                         resultsDiv.innerHTML = ''; // Clear autocomplete results
+                        document.getElementById('new-recipe-product-search').value = '';
+                        return;
                     }
+                    addIngredientToNewRecipe(item);
+                    document.getElementById('new-recipe-product-search').value = '';
+                    resultsDiv.innerHTML = '';
                 });
                 resultsDiv.appendChild(div);
             });
         }
 
-        // --- Recipe Management ---
-        let currentRecipeIngredients = [];
-        function addIngredientToRecipe(product) {
-            const gramsInput = prompt(`Введите порцию в граммах для "${product.name}":`, "100");
-            const grams = parseFloat(gramsInput);
+        // Add ingredient to the new recipe being created
+        function addIngredientToNewRecipe(item) { // Renamed from 'product' to 'item'
+            let gramsInput = prompt(`Введите порцию в граммах для "${item.name}":`, "100");
+            let grams = parseFloat(gramsInput);
             if (isNaN(grams) || grams <= 0) {
                 showMessage("Некорректная порция.");
                 return;
             }
 
-            let actualProduct = product;
-            if (product.isRecipe && product.originalRecipe) {
-                // If adding a recipe as an ingredient, expand its components
-                product.originalRecipe.ingredients.forEach(ing => {
+            if (item.isRecipe && item.originalRecipe) {
+                // If adding an existing recipe as an ingredient, expand its components
+                item.originalRecipe.ingredients.forEach(ing => {
                     currentRecipeIngredients.push({
                         id: Date.now() + Math.random(), // Unique ID for this instance
                         product: { ...ing.product }, // Deep copy
-                        grams: ing.grams * (grams / 100) // Scale ingredients if adding recipe by grams
+                        grams: ing.grams * (grams / calculateTotalGrams(item.originalRecipe.ingredients)) // Scale ingredients based on the *recipe's* original total grams, not 100
                     });
                 });
-                showMessage(`Рецепт "${product.name}" добавлен как ингредиенты.`);
+                showMessage(`Ингредиенты из рецепта "${item.name}" добавлены.`);
             } else {
                  currentRecipeIngredients.push({
                     id: Date.now() + Math.random(), // Unique ID for this instance
-                    product: { ...actualProduct }, // Make a copy to avoid mutation
+                    product: { ...item }, // Make a copy to avoid mutation
                     grams: grams
                 });
-                showMessage(`Продукт "${product.name}" добавлен к рецепту.`);
+                showMessage(`Продукт "${item.name}" добавлен как ингредиент.`);
             }
 
             renderRecipeIngredients();
+            updateNewRecipeSummary();
         }
 
+
+        // Render ingredients list for the new recipe being created
         function renderRecipeIngredients() {
-            const list = document.getElementById('recipe-ingredients-list');
+            const list = document.getElementById('new-recipe-ingredients-list');
             list.innerHTML = '';
-            currentRecipeIngredients.forEach(item => {
+            if (currentRecipeIngredients.length === 0) {
+                list.innerHTML = '<p>Пока нет ингредиентов. Используйте поиск, чтобы добавить их.</p>';
+                return;
+            }
+
+            currentRecipeIngredients.forEach((item, index) => {
                 const div = document.createElement('div');
                 div.classList.add('food-item'); // Reuse food-item style
                 div.innerHTML = `
                     <span>${item.product.name} - ${item.grams.toFixed(0)} г</span>
                     <div class="item-actions">
-                        <button class="delete-btn" data-id="${item.id}">&times;</button>
+                        <button class="delete-btn" data-index="${index}">&times;</button>
                     </div>
                 `;
                 list.appendChild(div);
 
                 div.querySelector('.delete-btn').addEventListener('click', (event) => {
-                    const idToDelete = parseFloat(event.target.dataset.id);
-                    currentRecipeIngredients = currentRecipeIngredients.filter(ing => ing.id !== idToDelete);
+                    const idxToDelete = parseInt(event.target.dataset.index);
+                    currentRecipeIngredients.splice(idxToDelete, 1);
                     renderRecipeIngredients();
+                    updateNewRecipeSummary();
                     showMessage('Ингредиент удален из рецепта.');
                 });
             });
-            if (currentRecipeIngredients.length === 0) {
-                list.innerHTML = '<p>Пока нет ингредиентов. Используйте поиск, чтобы добавить их.</p>';
-            }
         }
 
+        function updateNewRecipeSummary() {
+            const summaryDiv = document.getElementById('new-recipe-summary-total');
+            if (currentRecipeIngredients.length === 0) {
+                summaryDiv.innerHTML = '';
+                return;
+            }
 
-        function saveProduct() {
+            const totalNutrients = calculateNutrients(currentRecipeIngredients);
+            const totalGrams = calculateTotalGrams(currentRecipeIngredients);
+
+            summaryDiv.innerHTML = `
+                <h4>Итоговый состав рецепта (${totalGrams.toFixed(0)} г):</h4>
+                <p>Калории: <strong>${totalNutrients.calories.toFixed(1)}</strong> ккал</p>
+                <p>Белки: <strong>${totalNutrients.proteins.toFixed(1)}</strong> г</p>
+                <p>Жиры: <strong>${totalNutrients.fats.toFixed(1)}</strong> г</p>
+                <p>Углеводы: <strong>${totalNutrients.carbs.toFixed(1)}</strong> г</p>
+                <p>ГИ: <strong>${totalNutrients.gi.toFixed(0)}</strong></p>
+            `;
+        }
+
+        // Save selected product to a meal
+        function saveProductToMeal() {
             if (!currentUserData) {
                 showMessage('Для сохранения продуктов сначала войдите или создайте профиль.');
                 return;
             }
 
             const grams = parseFloat(document.getElementById('product-grams').value);
-            if (!selectedProduct || isNaN(grams) || grams <= 0) {
+            if (!selectedProductForMeal || isNaN(grams) || grams <= 0) {
                 showMessage('Пожалуйста, выберите продукт и укажите корректную порцию.');
                 return;
             }
 
-            // If the selected product is a recipe, expand it into its individual components
-            let productsToAdd = [];
-            if (selectedProduct.isRecipe && selectedProduct.originalRecipe) {
-                selectedProduct.originalRecipe.ingredients.forEach(ing => {
-                    productsToAdd.push({
-                        product: { ...ing.product }, // Deep copy to avoid modifying original
-                        grams: ing.grams * (grams / 100) // Scale the ingredients based on the entered 'grams' for the recipe
-                    });
-                });
-            } else {
-                productsToAdd.push({ product: { ...selectedProduct }, grams: grams }); // Add as is, deep copy
-            }
-
             if (!currentUserData.dailyLogs[formatDate(displayedDate)]) {
                 currentUserData.dailyLogs[formatDate(displayedDate)] = {
-                    breakfast: [],
-                    lunch: [],
-                    dinner: [],
-                    snacks: []
+                    breakfast: [], lunch: [], dinner: [], snacks: []
                 };
             }
 
+            const productEntry = { product: { ...selectedProductForMeal }, grams: grams };
+
             if (editingProductIndex === -1) {
-                // Добавление новых продуктов
-                productsToAdd.forEach(item => {
-                    currentUserData.dailyLogs[formatDate(displayedDate)][currentMealType].push(item);
-                });
-                showMessage('Продукт(ы) успешно добавлен(ы)!');
+                currentUserData.dailyLogs[formatDate(displayedDate)][currentMealType].push(productEntry);
+                showMessage('Продукт успешно добавлен!');
             } else {
-                // Редактирование (замена)
-                if (productsToAdd.length > 1) {
-                    // If a recipe was selected for editing, it's a replacement.
-                    // This is a simplified approach; a more robust solution might handle
-                    // replacing one item with multiple items, which current UI does not directly support.
-                    // For now, we'll replace the single item with the first component of the recipe.
-                    currentUserData.dailyLogs[formatDate(displayedDate)][currentMealType][editingProductIndex] = productsToAdd[0];
-                    showMessage('Продукт заменен на первый ингредиент рецепта.');
-                } else {
-                    currentUserData.dailyLogs[formatDate(displayedDate)][currentMealType][editingProductIndex] = productsToAdd[0];
-                    showMessage('Продукт успешно обновлен!');
-                }
+                currentUserData.dailyLogs[formatDate(displayedDate)][currentMealType][editingProductIndex] = productEntry;
+                showMessage('Продукт успешно обновлен!');
             }
 
             saveCurrentUserData();
             renderDailyLog();
-            closeModal('add-edit-product-modal');
+            closeModal('add-to-meal-modal');
         }
+
+        // Save selected recipe to a meal
+        function saveRecipeToMeal() {
+            if (!currentUserData) {
+                showMessage('Для сохранения рецептов сначала войдите или создайте профиль.');
+                return;
+            }
+
+            const grams = parseFloat(document.getElementById('recipe-grams').value);
+            if (!selectedRecipeForMeal || isNaN(grams) || grams <= 0) {
+                showMessage('Пожалуйста, выберите рецепт и укажите корректную порцию.');
+                return;
+            }
+
+            if (!currentUserData.dailyLogs[formatDate(displayedDate)]) {
+                currentUserData.dailyLogs[formatDate(displayedDate)] = {
+                    breakfast: [], lunch: [], dinner: [], snacks: []
+                };
+            }
+
+            // When adding a recipe to a meal, we expand its ingredients.
+            const itemsToAdd = [];
+            selectedRecipeForMeal.originalRecipe.ingredients.forEach(ing => {
+                itemsToAdd.push({
+                    product: { ...ing.product },
+                    grams: ing.grams * (grams / calculateTotalGrams(selectedRecipeForMeal.originalRecipe.ingredients))
+                });
+            });
+
+            // If editing, replace the single existing item with the expanded recipe.
+            // If adding, push all expanded items.
+            if (editingProductIndex === -1) {
+                currentUserData.dailyLogs[formatDate(displayedDate)][currentMealType].push(...itemsToAdd);
+                showMessage('Рецепт добавлен в прием пищи (ингредиентами)!');
+            } else {
+                // This is an edge case: replacing a single product with a full recipe.
+                // For simplicity, we'll replace the existing item with the first ingredient of the recipe,
+                // and add the rest. A more complex UI might allow replacing with a group.
+                currentUserData.dailyLogs[formatDate(displayedDate)][currentMealType].splice(editingProductIndex, 1, ...itemsToAdd);
+                showMessage('Продукт заменен на ингредиенты из рецепта!');
+            }
+
+            saveCurrentUserData();
+            renderDailyLog();
+            closeModal('add-to-meal-modal');
+        }
+
 
         function deleteFoodItem(mealType, index) {
             if (!currentUserData || !currentUserData.dailyLogs[formatDate(displayedDate)]) return;
@@ -2333,21 +2692,23 @@
                 return;
             }
 
-            if (PRODUCT_DATABASE[name] || currentUserData.customProducts[name]) {
+            if (PRODUCT_DATABASE[name] || (currentUserData.customProducts && currentUserData.customProducts[name])) {
                 showMessage(`Продукт с названием "${name}" уже существует. Выберите другое название.`);
                 return;
             }
-
+            if (!currentUserData.customProducts) {
+                currentUserData.customProducts = {};
+            }
             currentUserData.customProducts[name] = {
                 calories, proteins, fats, carbs, gi, category: "Пользовательские"
             };
             saveCurrentUserData();
             showMessage(`Продукт "${name}" успешно добавлен в вашу базу!`);
-            closeModal('add-edit-product-modal');
+            closeModal('create-custom-product-modal'); // Close the specific modal
         }
 
-        function saveRecipe() {
-            const recipeName = document.getElementById('recipe-name').value.trim();
+        function saveNewRecipe() {
+            const recipeName = document.getElementById('new-recipe-name').value.trim();
             if (!recipeName || currentRecipeIngredients.length === 0) {
                 showMessage('Пожалуйста, введите название рецепта и добавьте хотя бы один ингредиент.');
                 return;
@@ -2357,7 +2718,9 @@
                 showMessage(`Рецепт с названием "${recipeName}" уже существует. Выберите другое название.`);
                 return;
             }
-
+            if (!currentUserData.recipes) {
+                currentUserData.recipes = [];
+            }
             const newRecipe = {
                 name: recipeName,
                 ingredients: JSON.parse(JSON.stringify(currentRecipeIngredients)) // Deep copy
@@ -2366,12 +2729,19 @@
             currentUserData.recipes.push(newRecipe);
             saveCurrentUserData();
             showMessage(`Рецепт "${recipeName}" успешно сохранен!`);
-            closeModal('add-edit-product-modal');
+            closeModal('create-new-recipe-modal'); // Close the specific modal
             currentRecipeIngredients = []; // Reset for next recipe
+            document.getElementById('new-recipe-name').value = ''; // Clear recipe name input
+            renderRecipeIngredients(); // Clear displayed ingredients
+            updateNewRecipeSummary(); // Clear summary
         }
 
         // --- Target Management ---
         function openSetTargetsModal() {
+            if (!currentUserData) {
+                showMessage('Пожалуйста, создайте или выберите профиль, чтобы устанавливать цели.');
+                return;
+            }
             document.getElementById('target-calories-input').value = currentUserData.targetCalories;
             document.getElementById('target-proteins-input').value = currentUserData.targetProteins;
             document.getElementById('target-fats-input').value = currentUserData.targetFats;
@@ -2408,53 +2778,57 @@
                 return;
             }
             const weightInput = document.getElementById('weight-input');
+            const weightDateInput = document.getElementById('weight-date-input');
             const weight = parseFloat(weightInput.value);
-            if (isNaN(weight) || weight <= 0) {
-                showMessage('Пожалуйста, введите корректный вес.');
+            const weightDate = weightDateInput.value; // YYYY-MM-DD string
+
+            if (isNaN(weight) || weight <= 0 || !weightDate) {
+                showMessage('Пожалуйста, введите корректный вес и выберите дату.');
                 return;
             }
 
-            const today = formatDate(new Date());
             if (!currentUserData.weightHistory) {
                 currentUserData.weightHistory = {};
             }
-            currentUserData.weightHistory[today] = weight;
+            currentUserData.weightHistory[weightDate] = weight;
             saveCurrentUserData();
             renderWeightHistory();
-            weightInput.value = '';
+            weightInput.value = ''; // Clear weight input after saving
+            weightDateInput.value = formatDate(new Date()); // Reset date to today
             showMessage('Вес добавлен!');
         }
 
         function renderWeightHistory() {
             if (!currentUserData || !currentUserData.weightHistory) {
-                document.getElementById('weight-history-list').innerHTML = '<li>Нет данных о весе.</li>';
+                document.getElementById('weight-history-list').innerHTML = '<li style="text-align: center; color: var(--text-color);">Нет данных о весе.</li>';
                 return;
             }
             const historyList = document.getElementById('weight-history-list');
             historyList.innerHTML = '';
-            const dates = Object.keys(currentUserData.weightHistory).sort().reverse(); // Sort descending
+            // Sort dates from oldest to newest for consistent display, then reverse for newest first
+            const dates = Object.keys(currentUserData.weightHistory).sort((a, b) => new Date(a) - new Date(b)).reverse();
 
             if (dates.length === 0) {
-                historyList.innerHTML = '<li>Нет данных о весе.</li>';
+                historyList.innerHTML = '<li style="text-align: center; color: var(--text-color);">Нет данных о весе.</li>';
                 return;
             }
 
-            dates.slice(0, 7).forEach(date => { // Show last 7 entries
+            dates.forEach(date => {
                 const li = document.createElement('li');
                 li.textContent = `${date}: ${currentUserData.weightHistory[date]} кг`;
                 historyList.appendChild(li);
             });
-            if (dates.length > 7) {
-                const moreLi = document.createElement('li');
-                moreLi.textContent = `...и еще ${dates.length - 7} записей.`;
-                historyList.appendChild(moreLi);
-            }
+            // Removed slice(0,7) to show all, but can be re-added if list gets too long
         }
 
         // --- Copy Meal Functionality ---
         let mealToCopyType = null;
 
         function openCopyMealModal(mealType) {
+            if (!currentUserData) {
+                showMessage('Пожалуйста, создайте или выберите профиль, чтобы копировать приемы пищи.');
+                return;
+            }
             mealToCopyType = mealType;
             // Set default date to yesterday
             const yesterday = new Date(displayedDate);
@@ -2479,7 +2853,7 @@
             if (!sourceLog || !sourceLog[fromMealType] || sourceLog[fromMealType].length === 0) {
                 showMessage('В выбранном приеме пищи за указанную дату нет продуктов для копирования.');
                 return;
-            }
+                }
 
             const itemsToCopy = JSON.parse(JSON.stringify(sourceLog[fromMealType])); // Deep copy
 
@@ -2517,6 +2891,66 @@
             showMessage('Данные успешно экспортированы!');
         }
 
+        // --- Import Data ---
+        function importUserData(event) {
+            if (!currentUserData) {
+                showMessage('Пожалуйста, сначала создайте или выберите профиль для импорта данных.');
+                return;
+            }
+
+            const file = event.target.files[0];
+            if (!file) {
+                showMessage('Пожалуйста, выберите файл для импорта.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const importedData = JSON.parse(e.target.result);
+
+                    // Basic validation to ensure it's a valid user data structure
+                    if (!importedData.userId || !importedData.userName || !importedData.dailyLogs) {
+                        showMessage('Некорректный формат файла данных профиля.');
+                        return;
+                    }
+
+                    showConfirmModal(`Вы уверены, что хотите импортировать данные для пользователя "${importedData.userName}" (ID: ${importedData.userId})? Это перезапишет существующие данные, если профиль с таким ID уже есть.`, () => {
+                        // Check if the imported user ID already exists in profiles list
+                        let profiles = loadUserProfiles();
+                        const existingProfileIndex = profiles.findIndex(p => p.id === importedData.userId);
+
+                        if (existingProfileIndex === -1) {
+                            // If no existing profile, add it to the list
+                            profiles.push({ id: importedData.userId, name: importedData.userName });
+                            saveUserProfiles(profiles);
+                        } else {
+                            // If profile exists, update its name in case it changed
+                            profiles[existingProfileIndex].name = importedData.userName;
+                            saveUserProfiles(profiles);
+                        }
+
+                        // Save the imported data under its userId
+                        localStorage.setItem(LS_USER_DATA_PREFIX + importedData.userId, JSON.stringify(importedData));
+
+                        // If currently active user is the one being imported, refresh UI
+                        if (currentUserId === importedData.userId) {
+                            currentUserData = importedData;
+                            updateUI();
+                        }
+                        showMessage(`Данные профиля "${importedData.userName}" успешно импортированы!`);
+                        // Clear the file input after import
+                        event.target.value = '';
+                    });
+
+                } catch (error) {
+                    showMessage('Ошибка при чтении или парсинге файла. Убедитесь, что это корректный JSON файл.');
+                    console.error('Ошибка импорта файла:', error);
+                }
+            };
+            reader.readAsText(file);
+        }
+
 
         // --- Инициализация и обработчики событий ---
 
@@ -2529,6 +2963,9 @@
             } else {
                 updateUI();
             }
+
+            // Set today's date for weight input
+            document.getElementById('weight-date-input').value = formatDate(new Date());
 
             // Навигация по датам
             document.getElementById('prev-day-btn').addEventListener('click', () => navigateDay(-1));
@@ -2543,12 +2980,40 @@
             document.getElementById('close-profile-modal').addEventListener('click', () => closeModal('profile-modal'));
             document.getElementById('close-switch-profile-btn').addEventListener('click', () => closeModal('profile-modal'));
 
-            // Добавление/редактирование продукта
-            document.getElementById('product-name').addEventListener('input', handleProductSearch);
-            document.getElementById('recipe-product-search').addEventListener('input', handleProductSearch);
-            document.getElementById('save-product-btn').addEventListener('click', saveProduct);
-            document.getElementById('cancel-add-product-btn').addEventListener('click', () => closeModal('add-edit-product-modal'));
-            document.getElementById('close-add-edit-product-modal').addEventListener('click', () => closeModal('add-edit-product-modal'));
+            // Добавление/редактирование продукта и рецепта
+            document.querySelectorAll('.meal-card .add-food-btn').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    openAddToMealModal('add-product', event.target.dataset.mealType);
+                });
+            });
+
+            document.getElementById('create-custom-product-btn').addEventListener('click', openCreateCustomProductModal);
+            document.getElementById('create-new-recipe-btn').addEventListener('click', openCreateNewRecipeModal);
+
+
+            // Event listeners for add-to-meal-modal
+            document.getElementById('product-search-input').addEventListener('input', handleProductSearchForMeal);
+            document.getElementById('save-product-to-meal-btn').addEventListener('click', saveProductToMeal);
+            document.getElementById('cancel-product-add-edit-btn').addEventListener('click', () => closeModal('add-to-meal-modal'));
+
+            document.getElementById('recipe-search-input').addEventListener('input', handleRecipeSearchForMeal);
+            document.getElementById('save-recipe-to-meal-btn').addEventListener('click', saveRecipeToMeal);
+            document.getElementById('cancel-recipe-add-edit-btn').addEventListener('click', () => closeModal('add-to-meal-modal'));
+
+            document.getElementById('close-add-to-meal-modal').addEventListener('click', () => closeModal('add-to-meal-modal'));
+
+
+            // Event listeners for create-custom-product-modal
+            document.getElementById('save-custom-product-btn').addEventListener('click', saveCustomProduct);
+            document.getElementById('cancel-custom-product-creation-btn').addEventListener('click', () => closeModal('create-custom-product-modal'));
+            document.getElementById('close-custom-product-modal').addEventListener('click', () => closeModal('create-custom-product-modal'));
+
+            // Event listeners for create-new-recipe-modal
+            document.getElementById('new-recipe-product-search').addEventListener('input', handleNewRecipeIngredientSearch);
+            document.getElementById('save-new-recipe-btn').addEventListener('click', saveNewRecipe);
+            document.getElementById('cancel-new-recipe-creation-btn').addEventListener('click', () => closeModal('create-new-recipe-modal'));
+            document.getElementById('close-new-recipe-modal').addEventListener('click', () => closeModal('create-new-recipe-modal'));
+
 
             // Установка целей КБЖУ
             document.getElementById('set-targets-btn').addEventListener('click', openSetTargetsModal);
@@ -2564,46 +3029,31 @@
             document.getElementById('cancel-copy-meal-btn').addEventListener('click', () => closeModal('copy-meal-modal'));
             document.getElementById('close-copy-meal-modal').addEventListener('click', () => closeModal('copy-meal-modal'));
 
-            // Экспорт данных
+            // Экспорт/Импорт данных
             document.getElementById('export-user-data-btn').addEventListener('click', exportUserData);
-
-            // Добавление своего продукта
-            document.getElementById('add-custom-product-btn').addEventListener('click', () => {
-                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-                document.querySelector('.tab-button[data-tab="custom-product"]').classList.add('active');
-                document.getElementById('custom-product-tab-content').classList.add('active');
-                openModal('add-edit-product-modal');
-                document.getElementById('product-modal-title').textContent = 'Добавить свой продукт';
+            document.getElementById('import-file-input').addEventListener('change', importUserData);
+            document.getElementById('import-user-data-btn').addEventListener('click', () => {
+                document.getElementById('import-file-input').click(); // Trigger file input click
             });
-            document.getElementById('save-custom-product-btn').addEventListener('click', saveCustomProduct);
-            document.getElementById('cancel-custom-product-btn').addEventListener('click', () => closeModal('add-edit-product-modal'));
 
 
-            // Создание рецепта
-            document.getElementById('add-custom-recipe-btn').addEventListener('click', () => {
-                currentRecipeIngredients = []; // Reset ingredients when opening recipe creation
-                renderRecipeIngredients();
-                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-                document.querySelector('.tab-button[data-tab="recipe"]').classList.add('active');
-                document.getElementById('recipe-tab-content').classList.add('active');
-                openModal('add-edit-product-modal');
-                document.getElementById('product-modal-title').textContent = 'Создать рецепт';
-            });
-            document.getElementById('save-recipe-btn').addEventListener('click', saveRecipe);
-            document.getElementById('cancel-recipe-btn').addEventListener('click', () => closeModal('add-edit-product-modal'));
-
-
-            // Tab switching for add/edit product modal
-            document.querySelectorAll('.tab-button').forEach(button => {
+            // Tab switching for add-to-meal-modal
+            document.querySelectorAll('#add-to-meal-modal .tab-button').forEach(button => {
                 button.addEventListener('click', (event) => {
-                    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-                    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                    document.querySelectorAll('#add-to-meal-modal .tab-button').forEach(btn => btn.classList.remove('active'));
+                    document.querySelectorAll('#add-to-meal-modal .tab-content').forEach(content => content.classList.remove('active'));
 
                     event.target.classList.add('active');
                     const tabId = event.target.dataset.tab + '-tab-content';
                     document.getElementById(tabId).classList.add('active');
+
+                    // Update modal title based on selected tab
+                    let modalTitle = '';
+                    switch(event.target.dataset.tab) {
+                        case 'add-product': modalTitle = 'Выбрать продукт'; break;
+                        case 'add-recipe': modalTitle = 'Выбрать рецепт'; break;
+                    }
+                    document.getElementById('add-to-meal-modal-title').textContent = modalTitle;
                 });
             });
 
@@ -2629,3 +3079,4 @@
     </script>
 </body>
 </html>
+�
